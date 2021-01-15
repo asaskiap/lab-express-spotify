@@ -1,0 +1,16 @@
+
+<div style="display: flex; flex-direction:column; margin: 2em" >
+{{#each albums}}
+
+
+    <h3>{{name}}</h3>
+    
+    <img src="{{images.[0].url}}" alt="" width="100">
+
+    <button><a href="/tracks/{{id}}">View Tracks</a></button>
+    
+    
+    
+{{/each}}
+
+</div>

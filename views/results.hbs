@@ -1,1 +1,22 @@
-<h1>Results of your search: </h1>
+<div style="display: flex; flex-direction:column">
+
+    <h1>Results of your search: </h1>
+
+
+
+<div id="artistContainter" style="display: flex; flex-wrap:wrap">
+
+{{#each results}}
+
+    <div id="singleArtist" style="padding:2em;" >
+    <p>{{name}}</p>
+        <img src="{{images.[0].url}}" alt="artist image" width="100" >
+<button><a href="/albums/{{id}}">view albums</a></button>
+</div>
+
+{{/each}}
+
+</div>
+
+
+</div>

@@ -105,7 +105,7 @@ To avoid making our API keys public, we don't want to add and commit them. We'll
 This package is imported at the very beginning of `app.js`. All that is left to do is to add your keys in the `.env` file.
 So go ahead and create a `.env` file and paste the following lines there, replacing the text with your credentials.
 
-```
+```  
 CLIENT_ID=your clientId goes here
 CLIENT_SECRET=your clientSecret goes here
 ```

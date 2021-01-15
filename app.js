@@ -33,9 +33,56 @@ app.get('/', (req, res) => {
 });
 
 app.get('/search', (req, res) => {
-    res.render('results');
+    const id = req.query.q;
+    spotifyApi
+        .searchArtists(id)
+        .then((data) => {
+            console.log('The received data from the API: ', data.body);
+            for (a of data.body.artists.items) {
+                console.log(a);
+            }
+            res.render('results', {
+                results: data.body.artists.items
+            });
+        })
+        .catch((err) =>
+            console.log('The error while searching artists occurred: ', err)
+        );
 });
 
+app.get('/albums/:id', (req, res) => {
+    const id = req.params.id;
+    spotifyApi
+        .getArtistAlbums(id)
+        .then((data) => {
+            // console.log(data.body);
+
+            for (item of data.body.items) {
+                console.log(item);
+            }
+            res.render('albums', {
+                albums: data.body.items
+            });
+        })
+        .catch((error) => {
+            console.log('error loading albums', error);
+        });
+});
+
+app.get('/tracks/:id', (req, res) => {
+    const id = req.params.id;
+    spotifyApi
+        .getAlbumTracks(id)
+        .then((data) => {
+            console.log(data.body.items);
+            res.render('tracks', {
+                tracks: data.body.items
+            });
+        })
+        .catch((error) => {
+            console.log('error loading tracks', error);
+        });
+});
 app.listen(3000, () =>
     console.log('My Spotify project running on port 3000 🎧 🥁 🎸 🔊')
 );
